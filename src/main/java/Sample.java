@@ -5,6 +5,8 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
 
 import static org.bytedeco.opencv.global.opencv_core.CV_8UC4;
 import static org.bytedeco.opencv.global.opencv_imgcodecs.imwrite;
@@ -18,6 +20,13 @@ public class Sample {
         // 各画素のARGB色情報を抽出
         // intは4byteなので、各byteがそれぞれARGBの各要素に対応している
         int[] argbArray = bufferedImage.getRGB(0, 0, bufferedImage.getWidth(), bufferedImage.getHeight(), null, 0, bufferedImage.getWidth());
+
+        //// ARGBの並びのままbyte配列に変換してしまう駄目な例
+        //ByteBuffer byteBuffer = ByteBuffer.allocate(argbArray.length * 4);
+        //IntBuffer intBuffer = byteBuffer.asIntBuffer();
+        //intBuffer.put(argbArray);
+        //byte[] byteArray = byteBuffer.array();
+        //Mat image = new Mat(bufferedImage.getHeight(), bufferedImage.getWidth(), CV_8UC4, new BytePointer(byteArray));
 
         // int配列をbyte配列に変換する
         // その際、Mat型で読み込めるようにARGBの並びをBGRAに変換する
