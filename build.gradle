@@ -14,7 +14,28 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 
-    implementation group: 'org.bytedeco', name: 'javacv-platform', version: '1.5.6'
+    // JavaCV全部入りパターン
+    //implementation group: 'org.bytedeco', name: 'javacv-platform', version: '1.5.6'
+
+    // 必要なパッケージのみ利用するパターン
+    // https://github.com/bytedeco/javacv/blob/release/platform/pom.xml のdependenciesから選ぶ
+    //implementation group: 'org.bytedeco', name: 'opencv-platform', version: '4.5.3-1.5.6'
+
+    // 更に細かく必要なパッケージのみを利用するパターン
+    implementation group: 'org.bytedeco', name: 'opencv', version: '4.5.3-1.5.6'
+    implementation group: 'org.bytedeco', name: 'opencv', version: '4.5.3-1.5.6', classifier: 'linux-x86'
+    implementation group: 'org.bytedeco', name: 'opencv', version: '4.5.3-1.5.6', classifier: 'linux-x86_64'
+    implementation group: 'org.bytedeco', name: 'opencv', version: '4.5.3-1.5.6', classifier: 'macosx-x86_64'
+    implementation group: 'org.bytedeco', name: 'opencv', version: '4.5.3-1.5.6', classifier: 'windows-x86'
+    implementation group: 'org.bytedeco', name: 'opencv', version: '4.5.3-1.5.6', classifier: 'windows-x86_64'
+    implementation group: 'org.bytedeco', name: 'openblas-platform', version: '0.3.17-1.5.6'
+
+    // 不要なパッケージを除外するパターン
+    //implementation group: 'org.bytedeco', name: 'javacv-platform', version: '1.5.6', {
+    //    exclude module: 'ffmpeg-platform'
+    //    exclude module: 'flycapture-platform'
+    //    exclude module: 'libdc1394-platform'
+    //}
 }
 
 test {
